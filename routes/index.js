@@ -73,6 +73,21 @@ router.post('/edit', (req, res, next) => {
     }
   );
 })
+router.post('/delete', (req, res, next) => {
+  console.log("deleting stuff without checking if it is valid! SEND IT!");
+  var db = new sqlite3.Database('mydb.sqlite3',
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      console.log("deleting " + req.body.id);
+      db.exec(`delete from blog where blog_id='${req.body.id}';`);     
+      res.redirect('/');
+    }
+  );
+})
 
 module.exports = router;
 

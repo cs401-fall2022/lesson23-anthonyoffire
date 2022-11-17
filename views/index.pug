@@ -21,6 +21,9 @@ block content
           input(type='txt' name='text')
           input(type='hidden' name='id' value=val.blog_id)
           button(type='submit')= 'Edit Blog'
+        form(method='POST' action='/delete')
+          input(type='hidden' name='id' value=val.blog_id)
+          button(type='submit')= 'Delete Blog'
     br
   
   form(method='POST' action='/add')
