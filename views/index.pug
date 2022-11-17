@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  ul 
+    each val in data
+      li= val.todo_id + " " + val.todo_txt
+  br
+
+  form(method='POST' action='/add')
+    input(type='txt' name='todo')
+    button(type='submit' text='Add to')
+      p Add Todo Item
+
+  form(method='POST' action='/delete')
+    input(type='txt' name='todo')
+    button(type='submit')
+      p Delete Item
