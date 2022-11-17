@@ -13,3 +13,7 @@ ul {
   padding: 0;
   margin-bottom: 2px;
 }
+
+nav,section {
+  border: 1px dotted blue;
+}

@@ -15,22 +15,24 @@ router.get('/', function (req, res, next) {
         exit(1);
       }
       //Query if the table exists if not lets create it on the fly!
-      db.all(`SELECT name FROM sqlite_master WHERE type='table' AND name='todo'`,
+      db.all(`SELECT name FROM sqlite_master WHERE type='table' AND name='blog'`,
         (err, rows) => {
+          
           if (rows.length === 1) {
             console.log("Table exists!");
-            db.all(` select todo_id, todo_txt from todo`, (err, rows) => {
+            db.all(` select blog_id, blog_title, blog_text from blog`, (err, rows) => {
               console.log("returning " + rows.length + " records");
-              res.render('index', { title: 'ToDo App', data: rows });
+              res.render('index', { title: 'Blogs', data: rows });
             });
           } else {
             console.log("Creating table and inserting some sample data");
-            db.exec(`create table todo (
-                     todo_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                     todo_txt text NOT NULL);`,
+            db.exec(`create table blog (
+                     blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     blog_title text NOT NULL,
+                     blog_text text NOT NULL);`,
               () => {
-                db.all(` select todo_id, todo_txt from todo`, (err, rows) => {
-                  res.render('index', { title: 'ToDo App', data: rows });
+                db.all(` select blog_title, blog_text from blog`, (err, rows) => {
+                  res.render('index', { title: 'Blogs', data: rows });
                 });
               });
           }
@@ -47,16 +49,16 @@ router.post('/add', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
-      console.log("inserting " + req.body.todo);
-      db.exec(`insert into todo ( todo_txt)
-                values ('${req.body.todo}');`)
+      db.exec(`insert into blog ( blog_title, blog_text)
+                values ('${req.body.title}',
+                  '${req.body.body}');`)
       //redirect to homepage
       res.redirect('/');
     }
   );
 })
 
-router.post('/delete', (req, res, next) => {
+router.post('/edit', (req, res, next) => {
   console.log("deleting stuff without checking if it is valid! SEND IT!");
   var db = new sqlite3.Database('mydb.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
@@ -65,8 +67,8 @@ router.post('/delete', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
-      console.log("inserting " + req.body.todo);
-      db.exec(`delete from todo where todo_id='${req.body.todo}';`);     
+      console.log("editing " + req.body.id);
+      db.exec(`update blog set blog_text='${req.body.text}' where blog_id='${req.body.id}';`);     
       res.redirect('/');
     }
   );

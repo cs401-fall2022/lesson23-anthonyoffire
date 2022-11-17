@@ -1,18 +1,37 @@
 extends layout
 
 block content
-  h1= title
-  ul 
+  nav
+    h1= title
+    a(href='/')= 'Home'
+    a(href='/about')= 'About'
+    a(href='/contact')= 'Contact'
+  section(id='sm_about')
+    p Placeholder for image
+    br
+    p Small about the blogger section 
+
+  section(id='blogs')
+    p Blog list Section
     each val in data
-      li= val.todo_id + " " + val.todo_txt
-  br
-
+      section(class='card')
+        h2= val.blog_title
+        p= val.blog_text 
+        form(method='POST' action='/edit')
+          input(type='txt' name='text')
+          input(type='hidden' name='id' value=val.blog_id)
+          button(type='submit')= 'Edit Blog'
+    br
+  
   form(method='POST' action='/add')
-    input(type='txt' name='todo')
-    button(type='submit' text='Add to')
-      p Add Todo Item
+    label(for='title')= 'New blog title:' 
+    br
+    input(type='txt' name='title' alt='Enter title')
+    br
+    label(for='body')= 'New blog text:'
+    br
+    input(type='txt' name='body' alt='Enter body')
+    br
+    button(type='submit' text='Add to')='Submit new blog!'
 
-  form(method='POST' action='/delete')
-    input(type='txt' name='todo')
-    button(type='submit')
-      p Delete Item
+  
