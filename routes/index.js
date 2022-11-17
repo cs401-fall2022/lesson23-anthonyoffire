@@ -39,7 +39,12 @@ router.get('/', function (req, res, next) {
         });
     });
 });
-
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: 'Blogs'});
+});
+router.get('/contact', function(req, res, next) {
+  res.render('contact', { title: 'Blogs'});
+});
 router.post('/add', (req, res, next) => {
   console.log("Adding todo item to table without sanitizing input! YOLO BABY!!");
   var db = new sqlite3.Database('mydb.sqlite3',
