@@ -45,6 +45,39 @@ router.get('/about', function(req, res, next) {
 router.get('/contact', function(req, res, next) {
   res.render('contact', { title: 'Blogs'});
 });
+router.get('/admin', function(req, res, next) {
+  var db = new sqlite3.Database('mydb.sqlite3',
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      //Query if the table exists if not lets create it on the fly!
+      db.all(`SELECT name FROM sqlite_master WHERE type='table' AND name='blog'`,
+        (err, rows) => {
+          
+          if (rows.length === 1) {
+            console.log("Table exists!");
+            db.all(` select blog_id, blog_title, blog_text from blog`, (err, rows) => {
+              console.log("returning " + rows.length + " records");
+              res.render('admin', { title: 'Blog Admin', data: rows });
+            });
+          } else {
+            console.log("Creating table");
+            db.exec(`create table blog (
+                     blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     blog_title text NOT NULL,
+                     blog_text text NOT NULL);`,
+              () => {
+                db.all(` select blog_title, blog_text from blog`, (err, rows) => {
+                  res.render('admin', { title: 'Blog Admin', data: rows });
+                });
+              });
+          }
+        });
+    });
+});
 router.post('/add', (req, res, next) => {
   console.log("Adding todo item to table without sanitizing input! YOLO BABY!!");
   var db = new sqlite3.Database('mydb.sqlite3',
