@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var createError = require('http-errors');
 var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose()
@@ -22,7 +21,7 @@ router.get('/', function (req, res, next) {
             console.log("Table exists!");
             db.all(` select blog_id, blog_title, blog_text from blog`, (err, rows) => {
               console.log("returning " + rows.length + " records");
-              res.render('index', { title: 'Blogs', data: rows });
+              res.render('index', { title: 'Home', data: rows });
             });
           } else {
             console.log("Creating table and inserting some sample data");
@@ -32,7 +31,7 @@ router.get('/', function (req, res, next) {
                      blog_text text NOT NULL);`,
               () => {
                 db.all(` select blog_title, blog_text from blog`, (err, rows) => {
-                  res.render('index', { title: 'Blogs', data: rows });
+                  res.render('index', { title: 'Home', data: rows });
                 });
               });
           }
@@ -40,10 +39,10 @@ router.get('/', function (req, res, next) {
     });
 });
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'Blogs'});
+  res.render('about', { title: 'About'});
 });
 router.get('/contact', function(req, res, next) {
-  res.render('contact', { title: 'Blogs'});
+  res.render('contact', { title: 'Contact Me'});
 });
 router.get('/admin', function(req, res, next) {
   var db = new sqlite3.Database('mydb.sqlite3',
@@ -61,7 +60,7 @@ router.get('/admin', function(req, res, next) {
             console.log("Table exists!");
             db.all(` select blog_id, blog_title, blog_text from blog`, (err, rows) => {
               console.log("returning " + rows.length + " records");
-              res.render('admin', { title: 'Blog Admin', data: rows });
+              res.render('admin', { title: 'Blog Admin Page', data: rows });
             });
           } else {
             console.log("Creating table");
@@ -71,7 +70,7 @@ router.get('/admin', function(req, res, next) {
                      blog_text text NOT NULL);`,
               () => {
                 db.all(` select blog_title, blog_text from blog`, (err, rows) => {
-                  res.render('admin', { title: 'Blog Admin', data: rows });
+                  res.render('admin', { title: 'Blog Admin Page', data: rows });
                 });
               });
           }

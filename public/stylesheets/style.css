@@ -9,19 +9,22 @@
 
 body {
   padding: 25px;
+  padding-left: 2%;
+  padding-right: 2%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: var(--bg1);
   color: var(--bg2);
   font-weight: bold;
 }
 h1 {
-  margin-left: 10px;
+  margin: 10px;
+  font-size: 20pt;
 }
 
 a {
   color: var(--bg2);
   text-decoration: none;
-  font-size: larger;
+  font-size: 16pt;
   font-weight: bold;
 }
 
@@ -46,12 +49,13 @@ section {
 }
 h2 {
   margin-top: 5px;
+  font-size: 16pt;
 }
 .links {
   display: flex;
   flex: 1;
   justify-content:space-around;
-  max-width: 200px;
+  max-width: 275px;
 }
 
 main {
@@ -66,7 +70,7 @@ main {
 }
 
 #blogs, #contact, #lg_about {
-  width: 72%;
+  width: 60%;
 }
 
 .card {
@@ -78,6 +82,15 @@ main {
 }
 .card p {
   display: none;
+}
+
+li {
+  margin: 10px;
+  margin-left: 0;
+}
+ul {
+  list-style-type: none;
+  margin-block-start: .75em;
 }
 img {
   width: 100%;
@@ -124,5 +137,20 @@ input:focus, textarea:focus {
 #admin {
   padding: 10px;
 }
+@media screen and (min-width: 800px){
+  #blogs, #contact, #lg_about {
+    width: 64%;
+  }
+}
 
+@media screen and (min-width: 1200px){
+  #blogs, #contact, #lg_about {
+    width: 68%;
+  }
+}
+@media screen and (min-width: 1600px){
+  #blogs, #contact, #lg_about {
+    width: 71%;
+  }
+}
 
