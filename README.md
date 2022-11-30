@@ -1,4 +1,4 @@
-# github-classroom-blank-starter# Manual
+# Manual
 ## Compile
 ```
 npm install
