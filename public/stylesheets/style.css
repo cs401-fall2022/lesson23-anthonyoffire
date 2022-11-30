@@ -65,7 +65,7 @@ main {
 
 #sm_about {
   width: 22%;
-  height: 50vh;
+  max-height: 700px;
   padding: 20px;
 }
 
@@ -153,4 +153,8 @@ input:focus, textarea:focus {
     width: 71%;
   }
 }
-
+@media screen and (min-height: 1000px){
+  #sm_about {
+    height: 60vh;
+  }
+}
