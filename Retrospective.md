@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Anthony Baird   
+- email: anthonybaird@u.boisestate.edu
 
 ## Instructions
 
@@ -21,12 +21,12 @@ Be safe CITE!
 
 ## Experience
 
-TODO
+I was able to finish, nothing was too hard. It might have been hard to figure out how to set up a db myself, but since we had your example from the last project available I just used that. I did not find the time to sanitize db input or use a login system, but other than that I think it turned out pretty well.
 
 ## Known issues or Bugs
 
-TODO
+None
 
 ## Sources used
 
-TODO
+[Getting rid of border highlights for textboxes](https://stackoverflow.com/questions/1457849/how-to-remove-the-border-highlight-on-an-input-text-element)
