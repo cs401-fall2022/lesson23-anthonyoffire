@@ -71,6 +71,7 @@ main {
 
 .card {
   margin: 10px;
+  margin-bottom: 15px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: var(--card);
