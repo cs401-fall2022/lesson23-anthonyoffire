@@ -1,10 +1,15 @@
 body {
-  padding: 50px;
+  padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #4c5b5e;
+  color:#25353d
 }
 
 a {
-  color: #00B7FF;
+  color: #25353d;
+  text-decoration: none;
+  font-size: larger;
+  font-weight: bold;
 }
 
 ul {
@@ -15,5 +20,50 @@ ul {
 }
 
 nav,section {
-  border: 1px dotted blue;
+  border: 1px solid #25353d;
+  background-color: #7e8385;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.links {
+  display: flex;
+  flex: 1;
+  justify-content:space-around;
+  max-width: 200px;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+#sm_about {
+  width: 22%;
+  height: 400px;
+}
+
+#blogs, #contact, #lg_about {
+  width: 72%;
+}
+
+.card {
+  margin: 10px;
+  
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.blogcard:checked + .bloglabel .card{
+  height: 500px;
 }

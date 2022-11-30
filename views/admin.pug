@@ -1,39 +1,39 @@
 extends layout
 
 block content
-  nav
-    h1= title
-    a(href='/')= 'Home'
-    a(href='/about')= 'About'
-    a(href='/contact')= 'Contact'
-  section(id='sm_about')
-    p Placeholder for image
-    br
-    p Small about the blogger section 
-
+  
   section(id='blogs')
     p Blog list Section
     each val in data
       section(class='card')
         h2= val.blog_title
         p= val.blog_text 
-        form(method='POST' action='/edit')
-          input(type='txt' name='text')
-          input(type='hidden' name='id' value=val.blog_id)
-          button(type='submit')= 'Edit Blog'
+        button(type='button' onclick='toggleEdit('+ val.blog_id + ')')= 'Toggle Edit'
+        form(id=val.blog_id method='POST' action='/edit' style='display:none;')
+          label(for='title')= 'Title'
+          br
+          input(type='txt' name='title' value=val.blog_title required)
+          br
+          label(for='text')= 'Body'
+          br
+          input(type='txt' name='text' value=val.blog_text required)
+          br
+          input(type='hidden' name='id' value=val.blog_id required)
+          br
+          button(type='submit')= 'Submit'
         form(method='POST' action='/delete')
           input(type='hidden' name='id' value=val.blog_id)
           button(type='submit')= 'Delete Blog'
     br
-  
-  form(method='POST' action='/add')
+  button(type='button' onclick='toggleEdit(new_blog.id)')= 'New Blog'
+  form(method='POST' action='/add' id='new_blog' style='display:none;')
     label(for='title')= 'New blog title:' 
     br
-    input(type='txt' name='title' alt='Enter title')
+    input(type='txt' name='title' alt='Enter title' required)
     br
-    label(for='body')= 'New blog text:'
+    label(for='body' required)= 'New blog text:'
     br
-    input(type='txt' name='body' alt='Enter body')
+    input(type='txt' name='body' alt='Enter body' required)
     br
     button(type='submit' text='Add to')='Submit new blog!'
 

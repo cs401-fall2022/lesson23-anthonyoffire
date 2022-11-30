@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var createError = require('http-errors');
 var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose()
@@ -91,7 +91,7 @@ router.post('/add', (req, res, next) => {
                 values ('${req.body.title}',
                   '${req.body.body}');`)
       //redirect to homepage
-      res.redirect('/');
+      res.redirect('/admin');
     }
   );
 })
@@ -106,8 +106,10 @@ router.post('/edit', (req, res, next) => {
         exit(1);
       }
       console.log("editing " + req.body.id);
-      db.exec(`update blog set blog_text='${req.body.text}' where blog_id='${req.body.id}';`);     
-      res.redirect('/');
+      db.exec(`update blog set blog_text='${req.body.text}' where blog_id='${req.body.id}';`);    
+      db.exec(`update blog set blog_title='${req.body.title}' where blog_id='${req.body.id}';`); 
+      
+      res.redirect('/admin');
     }
   );
 })
@@ -122,7 +124,7 @@ router.post('/delete', (req, res, next) => {
       }
       console.log("deleting " + req.body.id);
       db.exec(`delete from blog where blog_id='${req.body.id}';`);     
-      res.redirect('/');
+      res.redirect('/admin');
     }
   );
 })
