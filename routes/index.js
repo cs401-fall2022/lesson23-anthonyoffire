@@ -88,8 +88,8 @@ router.post('/add', (req, res, next) => {
         exit(1);
       }
       db.exec(`insert into blog ( blog_title, blog_text)
-                values ('${req.body.title}',
-                  '${req.body.body}');`)
+                values ('${req.body.newtitle}',
+                  '${req.body.newbody}');`)
       //redirect to homepage
       res.redirect('/admin');
     }

@@ -3,38 +3,43 @@ extends layout
 block content
   
   section(id='blogs')
-    p Blog list Section
+    h2 Blog List
+    div(id='admin')
+      button(type='button' onclick='toggleEdit(new_blog.id)')= 'New Blog Toggle'
+      form(method='POST' action='/add' id='new_blog' style='display:none;')
+        label(for='newtitle')= 'Title:' 
+        br
+        input(type='txt' name='newtitle' required)
+        br
+        label(for='newbody' required)= 'Body:'
+        br
+        textarea(rows='10' cols='50' name='newbody' required)
+        br
+        button(type='submit' text='Add to')='Submit new blog!'
     each val in data
-      section(class='card')
-        h2= val.blog_title
-        p= val.blog_text 
-        button(type='button' onclick='toggleEdit('+ val.blog_id + ')')= 'Toggle Edit'
-        form(id=val.blog_id method='POST' action='/edit' style='display:none;')
-          label(for='title')= 'Title'
+      input(type='checkbox' id=val.blog_id*(-1) style='display:none' class='blogcard')
+      label(for=val.blog_id*(-1) class='bloglabel')
+        section(class='card')
+          h3= val.blog_title
+          p= val.blog_text 
+          button(type='button' onclick='toggleEdit('+ val.blog_id + ')')= 'Toggle Edit'
           br
-          input(type='txt' name='title' value=val.blog_title required)
-          br
-          label(for='text')= 'Body'
-          br
-          input(type='txt' name='text' value=val.blog_text required)
-          br
-          input(type='hidden' name='id' value=val.blog_id required)
-          br
-          button(type='submit')= 'Submit'
-        form(method='POST' action='/delete')
-          input(type='hidden' name='id' value=val.blog_id)
-          button(type='submit')= 'Delete Blog'
-    br
-  button(type='button' onclick='toggleEdit(new_blog.id)')= 'New Blog'
-  form(method='POST' action='/add' id='new_blog' style='display:none;')
-    label(for='title')= 'New blog title:' 
-    br
-    input(type='txt' name='title' alt='Enter title' required)
-    br
-    label(for='body' required)= 'New blog text:'
-    br
-    input(type='txt' name='body' alt='Enter body' required)
-    br
-    button(type='submit' text='Add to')='Submit new blog!'
+          form(id=val.blog_id method='POST' action='/edit' style='display:none;')
+            label(for='title')= 'Title'
+            br
+            input(type='txt' name='title' value=val.blog_title required)
+            br
+            label(for='text')= 'Body'
+            br
+            textarea(rows='10' cols='50' name='text' required)= val.blog_text
+            br
+            input(type='hidden' name='id' value=val.blog_id required)
+            br
+            button(type='submit')= 'Submit'
+          form(method='POST' action='/delete')
+            input(type='hidden' name='id' value=val.blog_id)
+            button(type='submit')= 'Delete Blog'
+    
+    
 
   

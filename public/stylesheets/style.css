@@ -1,30 +1,36 @@
+:root{
+  --bg1: rgb(76, 91, 94);
+  --bg2: #25353d;
+  --section: #7e8385;
+  --card: #8b9092;
+  --button: #6f7d83;
+  --textbox:#b89666;
+}
+
 body {
   padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #4c5b5e;
-  color:#25353d
+  background-color: var(--bg1);
+  color: var(--bg2);
+  font-weight: bold;
+}
+h1 {
+  margin-left: 10px;
 }
 
 a {
-  color: #25353d;
+  color: var(--bg2);
   text-decoration: none;
   font-size: larger;
   font-weight: bold;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 2px;
-}
-
 nav,section {
-  border: 1px solid #25353d;
-  background-color: #7e8385;
+  box-shadow: 0px 0px 6px rgba(0,0,0,.9) inset;
+  background-color: var(--section);
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0px 0px 6px rgba(0,0,0,.9) inset;
 }
 
 nav {
@@ -34,6 +40,13 @@ nav {
   margin-bottom: 25px;
 }
 
+section {
+  padding: 20px;
+  overflow: hidden;
+}
+h2 {
+  margin-top: 5px;
+}
 .links {
   display: flex;
   flex: 1;
@@ -48,7 +61,8 @@ main {
 
 #sm_about {
   width: 22%;
-  height: 400px;
+  height: 50vh;
+  padding: 20px;
 }
 
 #blogs, #contact, #lg_about {
@@ -57,13 +71,57 @@ main {
 
 .card {
   margin: 10px;
-  
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: var(--card);
 }
-
+.card p {
+  display: none;
+}
+img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.712), 0 2px 8px -1px rgba(0, 0, 0, 0.06), 0px 0px 10px rgba(0,0,0,.9) inset;
+}
+button:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 0px 4px rgba(0,0,0,.9) inset;
+}
 .card:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 0px 6px rgba(0,0,0,.9) inset;
+}
+a:hover {
+  text-shadow: 2px 2px 5px var(--bg1);
+}
+.blogcard:checked + .bloglabel .card p{
+  display: block;
+}
+button {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0px 0px 3px rgba(0,0,0,.9) inset;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: var(--button);
+  padding: 10px;
+  border-width: 0px;
+  border-radius: 10px;
+}
+input, textarea{
+  display: block;
+  width: 97%;
+  padding:10px;
+  margin-top: 5px;
+  background-color: var(--textbox);
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 5px black;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+input:focus, textarea:focus {
+  outline-width: 0;
+}
+#admin {
+  padding: 10px;
 }
 
-.blogcard:checked + .bloglabel .card{
-  height: 500px;
-}
+
